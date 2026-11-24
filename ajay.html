@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FitTrack - Fitness Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b0f14;
+    color:white;
+    min-height:100vh;
+}
+
+.container{
+    width:92%;
+    max-width:1150px;
+    margin:auto;
+    padding:30px 0;
+}
+
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    background:#1e2b24;
+    border-radius:15px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:25px;
+}
+
+.logo h1{
+    font-size:25px;
+}
+
+.logo p{
+    color:#87918d;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.date{
+    color:#8d9693;
+    font-size:14px;
+}
+
+
+/* HERO */
+
+.hero{
+    background:
+    linear-gradient(120deg,#17231d,#111a16);
+
+    border:1px solid #26352d;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#919b96;
+    margin-bottom:22px;
+}
+
+.goal-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.goal-row span:last-child{
+    color:#62e58a;
+}
+
+.progress{
+    height:12px;
+    background:#27322d;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:68%;
+    background:#5de18b;
+    border-radius:20px;
+
+    transition:.5s;
+}
+
+
+/* STAT GRID */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+}
+
+.card{
+    background:#121820;
+
+    border:1px solid #222c35;
+
+    border-radius:18px;
+
+    padding:22px;
+}
+
+.card-icon{
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.card-title{
+    color:#89938f;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.card-value{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.card-unit{
+    color:#77827d;
+    font-size:12px;
+    margin-left:4px;
+}
+
+
+/* MAIN GRID */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:
+    1.4fr 1fr;
+
+    gap:20px;
+}
+
+
+/* ACTIVITY */
+
+.activity{
+    background:#121820;
+
+    border:1px solid #222c35;
+
+    border-radius:20px;
+
+    padding:25px;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.title-row h2{
+    font-size:20px;
+}
+
+.title-row span{
+    color:#62e58a;
+    font-size:13px;
+}
+
+
+/* CIRCULAR STEPS */
+
+.step-circle{
+    width:210px;
+    height:210px;
+
+    margin:10px auto 25px;
+
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #62e58a 0deg,
+        #62e58a 245deg,
+        #25322c 245deg,
+        #25322c 360deg
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.step-inner{
+    width:175px;
+    height:175px;
+
+    border-radius:50%;
+
+    background:#121820;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.step-number{
+    font-size:38px;
+    font-weight:bold;
+}
+
+.step-label{
+    color:#89938f;
+    font-size:13px;
+    margin-top:5px;
+}
+
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+
+    color:white;
+
+    background:#202b34;
+
+    padding:11px 17px;
+
+    border-radius:10px;
+}
+
+button:hover{
+    background:#2c3a44;
+}
+
+.green{
+    background:#279357;
+}
+
+.green:hover{
+    background:#31ae68;
+}
+
+
+/* RIGHT SIDE */
+
+.right{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+
+/* WATER */
+
+.water-value{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:12px;
+}
+
+.water-value strong{
+    font-size:28px;
+}
+
+.water-progress{
+    height:10px;
+    background:#242f38;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.water-bar{
+    height:100%;
+    width:55%;
+    background:#4db9ff;
+    border-radius:20px;
+
+    transition:.4s;
+}
+
+.water-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+
+/* HEART */
+
+.heart{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.heart-icon{
+    width:55px;
+    height:55px;
+
+    background:#302024;
+
+    border-radius:15px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+}
+
+.heart-number{
+    font-size:27px;
+    font-weight:bold;
+}
+
+.heart-status{
+    color:#62e58a;
+    font-size:12px;
+    margin-top:5px;
+}
+
+
+/* WORKOUT */
+
+.workouts{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+}
+
+.workout{
+    background:#1a222b;
+
+    border-radius:13px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.workout:hover{
+    transform:translateY(-3px);
+    background:#232e38;
+}
+
+.workout-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.workout h3{
+    font-size:14px;
+}
+
+.workout p{
+    color:#7f8a86;
+    font-size:11px;
+    margin-top:4px;
+}
+
+
+/* BOTTOM */
+
+.bottom{
+    margin-top:20px;
+
+    display:grid;
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+}
+
+
+/* CALORIES */
+
+.calorie-number{
+    font-size:35px;
+    font-weight:bold;
+}
+
+.calorie-number span{
+    color:#89938f;
+    font-size:13px;
+}
+
+
+/* SLEEP */
+
+.sleep{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.sleep-number{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.sleep-quality{
+    color:#62e58a;
+    font-size:13px;
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    color:#68736e;
+
+    font-size:12px;
+
+    margin-top:35px;
+
+    padding-bottom:15px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .main-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .container{
+        width:94%;
+    }
+
+    header{
+        align-items:flex-start;
+    }
+
+    .date{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .bottom{
+        grid-template-columns:1fr;
+    }
+
+    .hero h2{
+        font-size:25px;
+    }
+
+    .card-value{
+        font-size:23px;
+    }
+
+    .step-circle{
+        width:190px;
+        height:190px;
+    }
+
+    .step-inner{
+        width:158px;
+        height:158px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+
+<div class="logo-icon">
+🏃
+</div>
+
+<div>
+
+<h1>FitTrack</h1>
+
+<p>Smart Fitness Dashboard</p>
+
+</div>
+
+</div>
+
+<div class="date" id="date">
+Today
+</div>
+
+</header>
+
+
+
+<!-- DAILY GOAL -->
+
+<div class="hero">
+
+<h2>Good Morning! 💪</h2>
+
+<p>
+Stay consistent. Small progress every day creates big results.
+</p>
+
+<div class="goal-row">
+
+<span>Daily Goal</span>
+
+<span id="goalPercent">
+68%
+</span>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="goalBar">
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+
+<div class="card">
+
+<div class="card-icon">
+👟
+</div>
+
+<div class="card-title">
+STEPS
+</div>
+
+<div class="card-value">
+
+<span id="steps">
+6842
+</span>
+
+<span class="card-unit">
+/ 10,000
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">
+🔥
+</div>
+
+<div class="card-title">
+CALORIES
+</div>
+
+<div class="card-value">
+
+<span id="calories">
+426
+</span>
+
+<span class="card-unit">
+kcal
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">
+🏃
+</div>
+
+<div class="card-title">
+WORKOUT
+</div>
+
+<div class="card-value">
+
+<span id="workout">
+32
+</span>
+
+<span class="card-unit">
+min
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">
+💧
+</div>
+
+<div class="card-title">
+WATER
+</div>
+
+<div class="card-value">
+
+<span id="water">
+4
+</span>
+
+<span class="card-unit">
+/ 8 glasses
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="main-grid">
+
+
+<!-- ACTIVITY -->
+
+<div class="activity">
+
+<div class="title-row">
+
+<h2>Today's Activity</h2>
+
+<span>LIVE</span>
+
+</div>
+
+
+<div class="step-circle" id="stepCircle">
+
+<div class="step-inner">
+
+<div class="step-number" id="circleSteps">
+6842
+</div>
+
+<div class="step-label">
+STEPS
+</div>
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+class="green"
+onclick="addSteps(500)">
++ 500 Steps
+</button>
+
+<button
+onclick="addSteps(1000)">
++ 1K Steps
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- RIGHT -->
+
+<div class="right">
+
+
+<!-- WATER CARD -->
+
+<div class="card">
+
+<div class="title-row">
+
+<h2>💧 Water Intake</h2>
+
+<span>Daily Target</span>
+
+</div>
+
+
+<div class="water-value">
+
+<strong>
+<span id="waterBig">
+4
+</span>/8
+</strong>
+
+<span>
+Glasses
+</span>
+
+</div>
+
+
+<div class="water-progress">
+
+<div
+class="water-bar"
+id="waterBar">
+</div>
+
+</div>
+
+
+<div class="water-buttons">
+
+<button
+class="green"
+onclick="addWater()">
++ Add Glass
+</button>
+
+<button
+onclick="resetWater()">
+Reset
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- HEART RATE -->
+
+<div class="card">
+
+<div class="title-row">
+
+<h2>❤️ Heart Rate</h2>
+
+<span>Normal</span>
+
+</div>
+
+
+<div class="heart">
+
+<div class="heart-icon">
+❤️
+</div>
+
+<div>
+
+<div class="heart-number">
+72 BPM
+</div>
+
+<div class="heart-status">
+● Resting
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- WORKOUT -->
+
+<div class="card">
+
+<div class="title-row">
+
+<h2>🏋️ Quick Workout</h2>
+
+<span>Choose</span>
+
+</div>
+
+
+<div class="workouts">
+
+
+<div
+class="workout"
+onclick="addWorkout(5)">
+
+<div class="workout-icon">
+🏃
+</div>
+
+<h3>Running</h3>
+
+<p>+5 min</p>
+
+</div>
+
+
+<div
+class="workout"
+onclick="addWorkout(10)">
+
+<div class="workout-icon">
+🚴
+</div>
+
+<h3>Cycling</h3>
+
+<p>+10 min</p>
+
+</div>
+
+
+<div
+class="workout"
+onclick="addWorkout(15)">
+
+<div class="workout-icon">
+🏋️
+</div>
+
+<h3>Strength</h3>
+
+<p>+15 min</p>
+
+</div>
+
+
+<div
+class="workout"
+onclick="addWorkout(20)">
+
+<div class="workout-icon">
+🧘
+</div>
+
+<h3>Yoga</h3>
+
+<p>+20 min</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- BOTTOM -->
+
+<div class="bottom">
+
+
+<div class="card">
+
+<div class="card-title">
+🔥 CALORIES BURNED
+</div>
+
+<div class="calorie-number">
+
+<span id="calorieBottom">
+426
+</span>
+
+<span>
+kcal
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-title">
+😴 LAST NIGHT SLEEP
+</div>
+
+<div class="sleep">
+
+<div>
+
+<div class="sleep-number">
+7h 24m
+</div>
+
+<div class="sleep-quality">
+● Good Quality
+</div>
+
+</div>
+
+<div style="font-size:35px;">
+🌙
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+FitTrack • Build Healthy Habits • Stay Strong 💪
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+
+/* DATE */
+
+const today = new Date();
+
+document.getElementById("date").innerText =
+today.toLocaleDateString(
+"en-IN",
+{
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+}
+);
+
+
+
+/* VARIABLES */
+
+let steps = 6842;
+
+let water = 4;
+
+let workout = 32;
+
+let calories = 426;
+
+
+
+/* ADD STEPS */
+
+function addSteps(amount){
+
+    steps += amount;
+
+    calories += Math.round(amount / 30);
+
+    updateDashboard();
+
+}
+
+
+
+/* ADD WATER */
+
+function addWater(){
+
+    if(water < 8){
+
+        water++;
+
+    }
+
+    updateDashboard();
+
+}
+
+
+
+/* RESET WATER */
+
+function resetWater(){
+
+    water = 0;
+
+    updateDashboard();
+
+}
+
+
+
+/* ADD WORKOUT */
+
+function addWorkout(minutes){
+
+    workout += minutes;
+
+    calories += minutes * 7;
+
+    updateDashboard();
+
+}
+
+
+
+/* UPDATE DASHBOARD */
+
+function updateDashboard(){
+
+
+    /* STEPS */
+
+    document.getElementById("steps")
+    .innerText = steps;
+
+
+    document.getElementById("circleSteps")
+    .innerText = steps;
+
+
+    /* CALORIES */
+
+    document.getElementById("calories")
+    .innerText = calories;
+
+
+    document.getElementById("calorieBottom")
+    .innerText = calories;
+
+
+    /* WORKOUT */
+
+    document.getElementById("workout")
+    .innerText = workout;
+
+
+    /* WATER */
+
+    document.getElementById("water")
+    .innerText = water;
+
+
+    document.getElementById("waterBig")
+    .innerText = water;
+
+
+    /* WATER BAR */
+
+    let waterPercent =
+    (water / 8) * 100;
+
+
+    document.getElementById("waterBar")
+    .style.width =
+    waterPercent + "%";
+
+
+    /* DAILY GOAL */
+
+    let percent =
+    Math.min(
+        Math.round(
+            (steps / 10000) * 100
+        ),
+        100
+    );
+
+
+    document.getElementById("goalPercent")
+    .innerText =
+    percent + "%";
+
+
+    document.getElementById("goalBar")
+    .style.width =
+    percent + "%";
+
+
+    /* CIRCLE */
+
+    let degree =
+    (percent / 100) * 360;
+
+
+    document.getElementById("stepCircle")
+    .style.background =
+    `conic-gradient(
+        #62e58a 0deg,
+        #62e58a ${degree}deg,
+        #25322c ${degree}deg,
+        #25322c 360deg
+    )`;
+
+}
+
+
+updateDashboard();
+
+</script>
+
+
+</body>
+</html>
